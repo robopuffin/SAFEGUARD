@@ -2,38 +2,48 @@
 
 **System for Active Failure Envelope Governance and Uncertainty-Aware Restraint Decisions**
 
-SAFETY ISN’T A STATE — IT’S A STRATEGY.
+---
 
-**SAFEGUARD** is a reflex layer for intelligent systems. It detects when uncertainty is rising or when the cost of error is escalating—and it acts accordingly. This isn't just fail-safe. It's *fail-smart*.
+### SAFETY ISN’T A STATE — IT’S A STRATEGY.
 
-Where most systems push forward until failure, SAFEGUARD acts like a cautious expert human:  
-> “I can keep going with increased caution.”
+**SAFEGUARD** is a reflex layer for intelligent systems. It detects when uncertainty is rising or when the cost of error is escalating—and it acts accordingly.
+
+This isn't just fail-safe. It's *fail-smart*.
+
+> “I can keep going — with increased caution.”
 
 ---
 
 ## 💡 Why SAFEGUARD?
 
 Modern machine learning systems are often:
-- Overconfident under degraded inputs
-- Unaware of their own operational boundaries
-- Designed to act, but not to pause
+- Overconfident under degraded inputs  
+- Unaware of their own operational boundaries  
+- Designed to act, but not to pause  
 
-**SAFEGUARD exists to fix that.** It brings preemptive caution, calibrated restraint, and intelligent awareness to safety-critical ML system.
+**SAFEGUARD exists to fix that.** It brings preemptive caution, calibrated restraint, and intelligent awareness to any safety-critical ML system.
 
 ---
 
 ## 🔧 What It Does
 
 SAFEGUARD:
-- **Monitors** the real-time safety envelope of an ML system's subsystems
-- **Assesses** where the subsystem performance falls on a comfort-> ugly-but-safe-> unsafe axis
-- **Triggers** slowdown, abstention, or override when confidence collapses or physical feasibility degrades
+- **Monitors** the real-time safety envelope of a system's subsystems  
+- **Assesses** where the system's predicted response lies on the axis:  
+  *Comfortable → Ugly-but-safe → Unsafe*  
+- **Triggers** slowdown, abstention, or override when either:  
+  - Confidence collapses  
+  - Physical feasibility degrades  
 
-It doesn't just avoid failure — it avoids *bad ways to succeed*.
-(Example: rain causes multiple objects to be first detected in the UBS zone.  The ML generated trajectories are slowed until observations are consistently in the comfortable zone.)
+> It doesn't just avoid failure — it avoids *bad ways to succeed.*
+
+**Example:**  
+If rain causes multiple objects to first appear in the "ugly-but-safe" zone, SAFEGUARD slows the system until objects consistently reappear in the comfortable zone.
+
 ---
 
 ## 📁 Project Structure
+
 
 SAFEGUARD/
 ├── run_simulation.py # Main runner script for testing scenarios
@@ -52,14 +62,12 @@ SAFEGUARD/
 ## 🚀 Status
 
 This project is under active development.  
-The core logic will be implemented in Python for simulation-ready demonstration. Future versions may include integrations into AV software stacks or robotic control layers.
+Initial versions focus on simulation and visualization of discomfort-triggered restraint logic.  
+Future versions may integrate into real-time AV or robotics stacks.
 
 ---
 
 ## 📜 License
 
-MIT — use, modify, adapt. Just don’t remove the brakes.
-
----
-
-Want help writing the first Python module next (e.g., `safeguard_logic.py`)? Or want a visual architecture diagram to drop into `/docs`?
+MIT — use, modify, adapt.  
+Just don’t remove the brakes.
