@@ -1,9 +1,10 @@
 # simulator.py
 # 2D simulation environment for SAFEGUARD
-# Tracks agent motion, obstacles, and environmental conditions like friction
+# Tracks agent motion, obstacles, friction, and perception uncertainty
 
 import numpy as np
 import matplotlib.pyplot as plt
+import random
 
 class Environment2D:
     def __init__(self, width=20, height=10):
@@ -17,6 +18,16 @@ class Environment2D:
 
     def set_friction(self, x, y, value):
         self.friction_map[y, x] = value
+
+    def get_true_obstacle(self, x, y):
+        return self.grid[y, x] == 1
+
+    def perceive_obstacle(self, x, y, visibility=1.0):
+        if not (0 <= x < self.width and 0 <= y < self.height):
+            return False
+        if random.random() > visibility:
+            return False  # miss due to poor visibility
+        return self.get_true_obstacle(x, y)
 
 class Agent:
     def __init__(self, x=0, y=5, heading=(1, 0)):
@@ -32,11 +43,13 @@ class Agent:
     def position(self):
         return int(round(self.x)), int(round(self.y))
 
-def simulate_step(env, agent):
+def simulate_step(env, agent, visibility):
     x, y = agent.position()
     if 0 <= x < env.width and 0 <= y < env.height:
-        if env.grid[y, x] == 1:
-            print("Collision detected at", (x, y))
+        perceived = env.perceive_obstacle(x, y, visibility=visibility)
+        if perceived:
+            print("Perceived obstacle at", (x, y))
+            # SAFEGUARD logic would respond here
         else:
             agent.move()
     else:
@@ -57,8 +70,8 @@ if __name__ == "__main__":
     env.set_friction(8, 5, 0.5)
 
     agent = Agent()
+    visibility = 0.6  # simulate degraded perception
 
     for _ in range(15):
-        simulate_step(env, agent)
+        simulate_step(env, agent, visibility)
         visualize(env, agent)
-
