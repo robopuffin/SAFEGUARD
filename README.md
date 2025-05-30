@@ -47,14 +47,23 @@ If rain causes multiple objects to first appear in the "ugly-but-safe" zone, SAF
 
 SAFEGUARD/
 ├── run_simulation.py # Main runner script for testing scenarios
+
 ├── requirements.txt # Dependencies (minimal: numpy, matplotlib, etc.)
+
 ├── /src/ # Core logic
+
 │ ├── simulator.py
+
 │ ├── physics_model.py
+
 │ ├── comfort_score.py
+
 │ ├── safeguard_logic.py
+
 ├── /examples/ # Scenario configs (dry, rain, low viz, etc.)
+
 ├── /docs/ # System overview, architecture, notes
+
 └── /slides/ # Optional presentation material
 
 ---
