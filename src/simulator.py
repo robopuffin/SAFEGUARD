@@ -35,6 +35,7 @@ class Agent:
         self.y = y
         self.heading = heading  # (dx, dy)
         self.velocity = 1.0  # units per timestep
+        self.missed_detections = 0  # consecutive misses
 
     def move(self):
         self.x += self.heading[0] * self.velocity
@@ -49,9 +50,14 @@ def simulate_step(env, agent, visibility):
         perceived = env.perceive_obstacle(x, y, visibility=visibility)
         if perceived:
             print("Perceived obstacle at", (x, y))
-            # SAFEGUARD logic would respond here
+            agent.missed_detections = 0  # reset on success
         else:
-            agent.move()
+            agent.missed_detections += 1
+            print(f"Missed detection at ({x}, {y}) - streak: {agent.missed_detections}")
+            if agent.missed_detections >= 3:
+                print("SAFEGUARD TRIGGERED: Slowing down due to repeated perception failures.")
+                agent.velocity = max(0.5, agent.velocity * 0.8)
+        agent.move()
     else:
         print("Agent out of bounds at", (x, y))
 
@@ -75,3 +81,4 @@ if __name__ == "__main__":
     for _ in range(15):
         simulate_step(env, agent, visibility)
         visualize(env, agent)
+
