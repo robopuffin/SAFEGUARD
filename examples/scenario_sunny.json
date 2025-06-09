@@ -1,0 +1,5 @@
+{
+  "initial_speed_mps": 1.5,
+  "distance_to_object_m": 4.0,
+  "perception_confidence": 0.8
+}
