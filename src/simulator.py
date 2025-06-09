@@ -6,6 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
+from src.safeguard_logic import evaluate_perception
+
 class Environment2D:
     def __init__(self, width=20, height=10):
         self.width = width
