@@ -1,7 +1,11 @@
-def decide_action(confidence, stopping_distance, distance_to_object):
-    if confidence < 0.4 and stopping_distance >= distance_to_object:
-        return 'ABORT'
-    elif confidence < 0.6:
-        return 'SLOW'
+def evaluate_risk(agent, perceived):
+    if perceived:
+        agent.missed_detections = 0
+        return "CLEAR"
     else:
-        return 'GO'
+        agent.missed_detections += 1
+        if agent.missed_detections >= 3:
+            agent.velocity = max(0.5, agent.velocity * 0.8)
+            return "SAFEGUARD: CAUTION"
+        else:
+            return "MISS"
